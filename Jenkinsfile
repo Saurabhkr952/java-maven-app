@@ -8,28 +8,28 @@ pipeline {
         maven 'Maven'
     }
     stages {
-        stage("init") {
+        stage("Init") {
             steps {
                 script {
                     gv = load "script.groovy"
                 }
             }
         }
-        stage("build jar") {
+        stage("Increment Version") {
             steps {
                 script {
-                    gv.buildJar()
+                    gv.incrementVersion()
                 }
             }
         }
-        stage("build image") {
+        stage("Build docker image") {
             steps {
                 script {
                     gv.buildImage()
                 }
             }
         }
-        stage("deploy") {
+        stage("pushing it to dockerhub") {
             steps {
                 script {
                     gv.deployApp()
